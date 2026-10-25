@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profili Im Modern</title>
+    <!-- Font Awesome për ikona moderne -->
+    <link rel="stylesheet" href="https://cloudflare.com">
+    <!-- Google Fonts për tipografi të pastër -->
+    <link href="https://googleapis.com" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #4f46e5;
+            --secondary-color: #06b6d4;
+            --text-main: #1f2937;
+            --text-muted: #4b5563;
+            --bg-gradient: linear-gradient(135deg, #e0e7ff 0%, #cffafe 100%);
+            --card-bg: rgba(255, 255, 255, 0.75);
+            --border-radius: 16px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: var(--text-main);
+        }
+
+        /* Kontejneri Kryesor */
+        .profile-container {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: var(--border-radius);
+            width: 100%;
+            max-width: 850px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr;
+        }
+
+        @media (min-width: 768px) {
+            .profile-container {
+                grid-template-columns: 35% 65%;
+            }
+        }
+
+        /* Kolona e Majtë - Informacioni Kryesor */
+        .sidebar {
+            background: linear-gradient(180deg, var(--primary-color) 0%, #3730a3 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .avatar-container {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .avatar {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            object-fit: cover;
+            background: #e5e7eb;
+        }
+
+        .status-dot {
+            width: 15px;
+            height: 15px;
+            background-color: #10b981;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            border: 2px solid #3730a3;
+        }
+
+        .sidebar h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            letter-spacing: 0.5px;
+        }
+
+        .sidebar .title {
+            font-size: 0.9rem;
+            color: #c7d2fe;
+            margin-bottom: 25px;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: white;
+            color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        /* Kolona e Djathtë - Detajet */
+        .main-content {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+        }
+
+        /* Rrjeti i të dhënave personale */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        @media (min-width: 480px) {
+            .info-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .info-item {
+            background: rgba(255, 255, 255, 0.5);
+            padding: 12px 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .info-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .info-value {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-main);
+            margin-top: 2px;
+        }
+
+        /* Seksioni i Aftësive (Skills) */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-badge {
+            background: white;
+            color: var(--text-main);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: all 0.2s;
+        }
+
+        .skill-badge:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* Biografia */
+        .about-text {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="profile-container">
+        
+        <!-- Kolona e Majtë -->
+        <div class="sidebar">
+            <div class="avatar-container">
+                <!-- Zëvendëso këtë URL me foton tënde ose përdor një imazh lokal -->
+                <img src="https://unsplash.com" alt="Foto Profili" class="avatar">
+                <div class="status-dot"></div>
+            </div>
+            <h2>Filan Fisteku</h2>
+            <p class="title">Zhvillues Web / Designer</p>
+            
+            <div class="social-links">
+                <a href="#" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="#" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+
+        <!-- Kolona e Djathtë -->
+        <div class="main-content">
+            
+            <!-- Seksioni: Rreth Meje -->
+            <div>
+                <h3 class="section-title"><i class="fas fa-user"></i> Rreth Meje</h3>
+                <p class="about-text">
+                    Përshëndetje! Jam një profesionist i apasionuar pas teknologjisë dhe dizajnit modern. Kam eksperiencë në krijimin e faqeve të internetit që janë jo vetëm të bukura vizualisht, por edhe funksionale dhe të shpejta për përdoruesit.
+                </p>
+            </div>
+
+            <!-- Seksioni: Të Dhënat Personale -->
+            <div>
+                <h3 class="section-title"><i class="fas fa-id-card"></i> Informacione Personale</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">Email</div>
+                        <div class="info-value">filan.fisteku@email.com</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Telefon</div>
+                        <div class="info-value">+355 6X XX XX XXX</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Vendndodhja</div>
+                        <div class="info-value">Tiranë, Shqipëri</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Edukimi</div>
+                        <div class="info-value">Msc. Shkenca Kompjuterike</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Seksioni: Aftësitë -->
+            <div>
+                <h3 class="section-title"><i class="fas fa-code"></i> Aftësitë Profesionale</h3>
+                <div class="skills-container">
+                    <span class="skill-badge">HTML5 / CSS3</span>
+                    <span class="skill-badge">JavaScript</span>
+                    <span class="skill-badge">React.js</span>
+                    <span class="skill-badge">UI/UX Design</span>
+                    <span class="skill-badge">Git & GitHub</span>
+                    <span class="skill-badge">Responsive Design</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
