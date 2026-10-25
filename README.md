@@ -1,0 +1,1 @@
+# Mini-Projekt---ne-Te-Menduarit-Algoritmik
